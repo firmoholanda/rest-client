@@ -32,16 +32,16 @@ class BingSearch
 
   def display__search_links
     # parse html with nokogiri
-    puts @@parsed_data = Nokogiri::HTML.parse(@@response.body.to_s)
+    puts @parsed_data = Nokogiri::HTML.parse(@@response.body.to_s)
 
     # get all lins from response.body
-    nodeset = @@parsed_data.xpath('//a')      
-    nodeset.map {|element| element["href"]}.compact
+    nodeset = @parsed_data.xpath('//a')
+    nodeset.map { |element| element['href'] }.compact
   end
 
   def display_search_title
     # get search title
-    puts @@parsed_data.title
+    puts @parsed_data.title
   end
 end
 
