@@ -1,29 +1,54 @@
 require 'rest-client'
 require 'nokogiri'
 
-# response = RestClient.get "https://www.bing.com/search?q=facebook"
-response = RestClient.get('https://www.bing.com/search?q=facebook').headers
+# retrieve the keyword from the user
+# search for it
+# return the results
 
-#puts "code:"    + response.code.to_s
-#puts "headers:" + response.headers.to_s
-#puts "cookies:" + response.cookies.to_s
-#puts "history:" + response.history.to_s
-#puts "body:"    + response.body
+class BingSearch
+  
+  URL = "https://www.bing.com/search?q="  
+  
+  def search
+    puts "Enter the keyword you want to search for: "
+    @@key_word = gets.chomp
+    word = "#{URL}#{@@key_word}"
+    @@response = RestClient.get word
+  end
 
+  def show
+    puts "code:"    + @@response.code.to_s
+    puts "headers:" + @@response.headers.to_s
+    puts "cookies:" + @@response.cookies.to_s
+    puts "history:" + @@response.history.to_s
+    puts "body:"    + @@response.body
+  end
 
-# File.write('body.html', response.body.to_s)
-File.write('header.html', response)
+  def save_files
+    # write file dump file to local dir
+    File.write('body.html', @@response.body.to_s)
+  end
 
-# write file dump file to local dir
-File.write('body.html', response.body.to_s)
+  def get_search_links
+    # parse html with nokogiri
+    @@parsed_data = Nokogiri::HTML.parse(@@response.body.to_s)
 
-# parse html with nokogiri
-parsed_data = Nokogiri::HTML.parse(response.body.to_s)
+    # get all lins from response.body
+    nodeset = @@parsed_data.xpath('//a')      
+    nodeset.map {|element| element["href"]}.compact
+  end
 
-# get search title
-puts parsed_data.title
+  def get_search_title
+    # get search title
+    @@parsed_data.title
+  end
 
-# get all lins from response.body
-nodeset = parsed_data.xpath('//a')      
-puts nodeset.map {|element| element["href"]}.compact
+end
 
+test = BingSearch.new
+
+test.search
+test.save_files
+test.show
+test.get_search_links
+test.get_search_title
