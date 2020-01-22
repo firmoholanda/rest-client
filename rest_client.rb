@@ -7,8 +7,8 @@ require 'nokogiri'
 # search for it
 # return the results
 class BingSearch
-  
-  URL = "https://www.bing.com/search?q="  
+
+  URL = 'https://www.bing.com/search?q='
   
   def search
     puts "Enter the keyword you want to search for: "
