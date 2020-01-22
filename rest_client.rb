@@ -21,7 +21,7 @@ class BingSearch
     puts 'headers:' + @response.headers.to_s
     puts 'cookies:' + @response.cookies.to_s
     puts 'history:' + @response.history.to_s
-    puts 'body:'    + @response.body
+    'body:'    + @response.body
   end
 
   def save_files
