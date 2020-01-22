@@ -19,9 +19,12 @@ class BingSearch
   def show
     puts 'code:'    + @response.code.to_s
     puts 'headers:' + @response.headers.to_s
+  end
+
+  def show2
     puts 'cookies:' + @response.cookies.to_s
     puts 'history:' + @response.history.to_s
-    'body:'    + @response.body
+    puts 'body:'    + @response.body
   end
 
   def save_files
