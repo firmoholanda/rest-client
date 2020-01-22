@@ -3,10 +3,10 @@
 require 'rest-client'
 require 'nokogiri'
 
-class BingSearch
 # retrieve the keyword from the user
 # search for it
 # return the results
+class BingSearch
   
   URL = "https://www.bing.com/search?q="  
   
