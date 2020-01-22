@@ -30,20 +30,19 @@ class BingSearch
     File.write('body.html', @@response.body.to_s)
   end
 
-  def get_search_links
+  def display__search_links
     # parse html with nokogiri
-    @@parsed_data = Nokogiri::HTML.parse(@@response.body.to_s)
+    puts @@parsed_data = Nokogiri::HTML.parse(@@response.body.to_s)
 
     # get all lins from response.body
     nodeset = @@parsed_data.xpath('//a')      
     nodeset.map {|element| element["href"]}.compact
   end
 
-  def get_search_title
+  def display_search_title
     # get search title
-    @@parsed_data.title
+    puts @@parsed_data.title
   end
-
 end
 
 test = BingSearch.new
@@ -51,5 +50,5 @@ test = BingSearch.new
 test.search
 test.save_files
 test.show
-test.get_search_links
-test.get_search_title
+test.display_search_links
+test.display_search_title
