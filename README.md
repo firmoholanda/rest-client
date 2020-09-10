@@ -1,6 +1,6 @@
 # 📃 rest-client
 
-in this project we got a chance to poke around HTTP requests from the command line (IRB actually) and also to play around with a new gem called rest-client. this is a useful (and powerful) gem which helps make HTTP requests.
+In this project we got a chance to poke around HTTP requests from the command line (IRB actually) and to play around with a new gem called rest-client. This is a useful (and powerful) gem which helps make HTTP requests.
 
 
 
